@@ -12,7 +12,6 @@ function CreateArea(props) {
     function handleContent(event){
         const titleToAdd = event.target.value
         setContentText(titleToAdd)
-        console.log(contentText);
     }
 
   return (
@@ -20,8 +19,12 @@ function CreateArea(props) {
       <form>
         <input name="title" placeholder="Title" onChange={handleTitle} value={titleText}/>
         <textarea name="content" placeholder="Take a note..." rows="3" value={contentText} onChange={handleContent}/>
-        <button onClick={()=>{
-            props.addNotes(titleText,contentText)}}>
+        <button onClick={(e)=>{
+            props.addNotes(titleText,contentText)
+            setTitleText("")
+            setContentText("")
+            e.preventDefault()
+            }}>
             Add</button>
       </form>
     </div>
