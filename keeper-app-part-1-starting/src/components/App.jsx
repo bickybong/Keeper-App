@@ -6,14 +6,11 @@ import CreateArea from "./CreateArea";
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const [id, setId] = useState(0);
 
-  function addNotes(title, content) {
+  function addNotes(note) {
     setNotes((prevNotes) => {
-      return [...prevNotes, { id, title, content }];
-    });
-    setId(id + 1);
-  }
+      return [...prevNotes, note];
+    });  }
 
   function deleteNotes(id) {
     console.log(id);
@@ -24,22 +21,14 @@ function App() {
     });
   }
 
-  // function deleteItem(id) {
-  //   setItems((prevItems) => {
-  //     return prevItems.filter((item, index) => {
-  //       return index !== id;
-  //     });
-  //   });
-  // }
-
   return (
     <div>
       <Heading />
       <CreateArea addNotes={addNotes} />
-      {notes.map((obj) => (
+      {notes.map((obj, index) => (
         <Note
-          key={obj.id}
-          id={obj.id}
+          key={index}
+          id={index}
           title={obj.title}
           content={obj.content}
           deleteNotes={deleteNotes}
